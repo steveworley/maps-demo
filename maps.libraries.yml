@@ -1,0 +1,32 @@
+events:
+  version: VERSION
+  js:
+    assets/js/maps.events.js: {}
+    assets/js/models/MarkerModel.js: {}
+    assets/js/models/MapModel.js: {}
+    assets/js/views/GoogleView.js: {}
+    assets/js/views/LeafletView.js: {}
+  css:
+    component:
+      assets/styles.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+    - maps/google
+    - maps/leaflet
+
+google:
+  version: VERSION
+  js:
+    https://maps.googleapis.com/maps/api/js?key=AIzaSyBFpoM0WxmVx0XVcelxLcBV2vcFQlcXPH4: {}
+    https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js: {}
+
+leaflet:
+  version: 1.0.3
+  js:
+    assets/libs/leaflet/leaflet.js: {}
+    https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/leaflet.markercluster.js: {}
+  css:
+    component:
+      assets/libs/leaflet/leaflet.css: {}
+      https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.5/MarkerCluster.css: {}

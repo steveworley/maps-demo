@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains module hook definitions.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function maps_theme() {
+  return [
+    'map_container' => [
+      'template' => 'map-container',
+      'variables' => ['libs' => [], 'source' => ''],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_map_container().
+ */
+function maps_preprocess_map_container(&$build) {
+  $build['#attached']['drupalSettings']['maps']['source'] = $build['source'];
+}

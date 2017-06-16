@@ -1,0 +1,6 @@
+name: Maps
+type: module
+description: "Demonstration module to provide simple mapping functionality"
+package: Core (Experimental)
+version: VERSION
+core: 8.x

@@ -1,0 +1,110 @@
+{#
+/**
+ * @file
+ * Renders map containers with buttons for building maps with different libs.
+ */
+#}
+
+{{ attach_library('maps/events') }}
+{% set items_per_page = [5, 10, 25, 50, 100, 300, 500, 1000, 2000, 2500, 5000, 'All'] %}
+{% set gist_url = 'https://gist.github.com/steveworley/9444ac05e1f946f43f569c423ea56f3b.js' %}
+
+<div class="col-sm-12">
+
+  <div class="map-controls">
+
+    <div class="form-group">
+      <label for="totalMarkers">{{ 'Total Markers'|t }}</label>
+      <select name="totalMarkers" id="totalMarkers" class="form-control">
+        {% for i in items_per_page %}
+          <option value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
+      <small id="totalMarkersHelper" class="form-text text-muted">Number of markers to display at a single time.</small>
+    </div>
+
+    <fieldset class="form-group">
+      <legend>Additional options <label class="check-label align-right"><input type="checkbox" name="showSnippets" checked /> {{ 'Show snippets'|t }}</label></legend>
+      <div class="radio">
+        <label class="radio-inline">
+          <input type="radio" name="popup" value="ajax" class="form-check-input" />
+          {{ 'Ajax popup content'|t }}
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="popup" value="load" class="form-check-input" />
+          {{ 'On load content'|t }}
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="popup" value="" class="form-check-input" />
+          {{ 'None'|t }}
+        </label>
+        <p class="form-text text-muted">{{ 'Choose how the popup should load additional content.'|t }}</p>
+      </div>
+      <div class="form-check">
+        <label class="check-label">
+          <input type="checkbox" name="withLabels" class="form-check-input" data-snippet="true" />
+          {{ 'With labels'|t }}
+          <p class="form-text text-muted">Display marker titles in a tooltip</p>
+        </label>
+        <div data-snippetFor="withLabels" class="hide">
+          {#-- Library snippets: Labels. --#}
+          {% for library in libs %}
+            <div class="col-sm-12" data-lib="{{ library }}">
+              <h3 id="{{ library }}-labels">{{ library|capitalize }}</h3>
+              <script src="{{ gist_url }}?file=labels.{{ library }}.js"></script>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="form-check">
+        <label class="check-label">
+          <input type="checkbox" name="cluster" class="form-check-input" data-snippet="true"/>
+          {{ 'Cluster markers'|t }}
+          <p class="form-text text-muted">Allow markers to be grouped up based on the libraries decisions.</p>
+        </label>
+        <div data-snippetFor="cluster" class="hide">
+          {% for library in libs %}
+            <div class="col-sm-12" data-lib="{{ library }}">
+              <h3 id="{{ library }}-labels">{{ library|capitalize }}</h3>
+              <script src="{{ gist_url }}?file=cluster.{{ library }}.js"></script>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="form-check">
+        <label class="check-label">
+          <input type="checkbox" name="worldCopyJump" class="form-check-input" data-snippet="true" />
+          {{ 'World Copy Jump'|t }}
+          <p class="form-text text-muted">This option makes leaflet duplicate markers when scrolling to the map edges.</p>
+        </label>
+        <div data-snippetFor="worldCopyJump" class="hide">
+          <div class="col-sm-12">
+            <h3 id="leaflet-world-copy-jump">Leaflet</h3>
+            <ul>
+              <li>This is only required by <strong>Leaflet</strong></li>
+              <li>There is seam at the edge of the map where markers will jump from one side to the other</li>
+            </ul>
+            <script src="{{ gist_url }}?file=worldCopyJump.leaflet.js"></script>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group">
+      <button class="js-control btn btn-primary" data-lib="google" data-view="GoogleView">Google</button>
+      <button class="js-control btn btn-primary" data-lib="leaflet" data-view="LeafletView">Leaflet</button>
+      <p class="form-text text-muted"><small>You may need to refresh the page to test different settings.</small></p>
+    </div>
+
+
+    <ul>
+    </ul>
+  </div>
+
+  <div id="test-container"></div>
+
+  {# magic #}
+  <div id="map-container" style="height: 500px; width: 100%; background: #d3d3d3; margin-bottom: 20px"></div>
+  {# endmagic #}
+
+</div>

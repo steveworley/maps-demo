@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_latitude
+    - node.type.stores
+id: node.stores.field_latitude
+field_name: field_latitude
+entity_type: node
+bundle: stores
+label: Latitude
+description: 'The latitude location of the store, this will be used to place markers at a location.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float -90
+  max: !!float 90
+  prefix: ''
+  suffix: ''
+field_type: float

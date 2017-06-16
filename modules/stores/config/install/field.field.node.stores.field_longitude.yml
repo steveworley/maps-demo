@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_longitude
+    - node.type.stores
+id: node.stores.field_longitude
+field_name: field_longitude
+entity_type: node
+bundle: stores
+label: Longitude
+description: 'The longitude of the store, this will be used to plot markers on the map.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float -180
+  max: !!float 180
+  prefix: ''
+  suffix: ''
+field_type: float

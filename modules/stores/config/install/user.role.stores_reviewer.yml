@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: stores_reviewer
+label: 'Stores reviewer'
+weight: 8
+is_admin: null
